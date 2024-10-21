@@ -1,0 +1,195 @@
+{% load static %}
+{% load post_tags %}
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    {% if title %}
+    <title> نبض الإلهام | {{ title }}</title>
+    {% else %}
+    <title> نبض الإلهام</title>
+    {% endif %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/min.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/png" sizes="32x32">
+    
+</head>
+<body>
+<!-- نافبار -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient">
+    <a class="navbar-brand" href="#">
+        <img src="{% static 'images/favicon.png' %}" alt="" style="height: 40px;">
+        نبض الإلهام 
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="d-flex justify-content-between w-100">
+            <span class="navbar-text" style="margin-right: 20px;">
+                𝑴𝒐𝒉𝒂𝒎𝒆𝒅 𝑯𝒆𝒔𝒉𝒂𝒎
+            </span>
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">الرئيسية <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">من أنا </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        دوراتي
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'django'%}">دورة جانجو</a>
+                        <a class="dropdown-item" href="{% url 'python'%}">دورة بايثون</a>
+                        <a class="dropdown-item" href="{% url 'c++'%}">دورة C++</a>
+                        <a class="dropdown-item" href="{% url 'html'%}">دورة html</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">دورات تعليمية</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'rate_site' %}">تقييم الموقع</a>
+                </li>            
+            </ul>
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a href="{% url 'profile' %}" class="nav-link">ملف شخصي</a></li>
+                    <li class="nav-item"><a href="{% url 'new_post'%}" class="nav-link">انشاء تدوينة جديدة</a></li>
+                    <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">تسجيل خروج</a></li>
+                {% else %}
+                    <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">تسجيل دخول</a></li>
+                    <li class="nav-item"><a href="{% url 'register' %}" class="nav-link">تسجيل</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<style>
+    .navbar-nav .nav-link {
+        color: white !important; /* لون النص */
+    }
+    .navbar-brand {
+        color: white !important; /* لون نص الشعار */
+    }
+    .navbar-text {
+        color: white !important; /* لون النص الإضافي */
+    }
+</style>
+
+
+<!-- قسم آخر التدوينات -->
+<section>
+    <div class="container mt-4">
+        <div class="row mt-4">
+            <div class="col-md-8">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-3 mt-3">
+                    <h3 class="text-center bg-secondary text-light p-2 bg-gradient">أخر التدوينات</h3>
+                    {% latest_blog %}
+                </div>
+                <div class="card mb-3">
+                    <h3 class="text-center bg-secondary text-light p-2 bg-gradient">أخر التعليقات</h3>
+                    {% latest_comments %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- قسم محتوى الصفحة -->
+<div class="container mt-4 custom-margin">
+    <div class="row">
+        <!-- قسم "من أنا" -->
+        <div class="col-md-4 custom-margin">
+            <div class="card mb-4 border">
+                <div class="card-header text-center bg-secondary text-light bg-gradient">
+                    عن المدونة 
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        مرحبًا بكم في رحلتنا: مدونة نبض الحياه للإلهام والاكتشاف
+
+                        اغمروا في عالم من الإبداع والتفكير حيث نستكشف تعقيدات الحياة والثقافة والتجربة الإنسانية. مدونتنا هي ملاذ للعقول الفضولية، حيث كل مشاركة تمثل مزيجًا من التأملات العميقة والقصص المثيرة والأفكار النابضة. سواء كنتم تبحثون عن الإلهام أو المعرفة أو مجرد لحظة من الفرح، ستجدون ذلك هنا.
+                        
+                        انضموا إلينا بينما نتنقل عبر مواضيع متنوعة، من النمو الشخصي والمغامرات السياحية إلى الأسئلة الفلسفية العميقة ودهشات الحياة اليومية. تدعوكم كل مقالة للتفكير والانخراط والتواصل مع مجتمع يقدر التجارب المشتركة ووجهات النظر المتنوعة.
+                        
+                        دعونا ننطلق معًا في هذه الرحلة المثيرة للاكتشاف، مقالة بعد مقالة!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم "مواقع هامة" -->
+        <div class="col-md-4 custom-margin">
+            <div class="card mb-4 border">
+                <div class="card-header text-center bg-secondary text-light bg-gradient">
+                    مواقع هامة
+                </div>
+                <div class="card-body">
+                    <ul class="custom-list">
+                        <li><a href="#">الموقع الأول</a></li>
+                        <li><a href="#">الموقع الثاني</a></li>
+                        <li><a href="#">الموقع الثالث</a></li>
+                        <li><a href="#">الموقع الرابع</a></li>
+                        <li><a href="#">الموقع الخامس</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم "وسائل التواصل الاجتماعي" -->
+        <div class="col-md-4 custom-margin">
+            <div class="card mb-4 border">
+                <div class="card-header text-center bg-secondary text-light bg-gradient">
+                    وسائل التواصل الاجتماعي
+                </div>
+                <div class="card-body text-center">
+                    <a href="https://www.facebook.com/profile.php?id=100080772770787&mibextid=ZbWKwL" class="btn btn-primary m-1">
+                        <i class="bi bi-facebook"></i> فيسبوك
+                    </a>
+                    <a href="#" class="btn btn-info m-1">
+                        <i class="bi bi-twitter"></i> تويتر
+                    </a>
+                    <a href="#" class="btn btn-danger m-1">
+                        <i class="bi bi-youtube"></i> يوتيوب
+                    </a>
+                    <a href="#" class="btn btn-success m-1">
+                        <i class="bi bi-instagram"></i> إنستجرام
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- الفوتر -->
+<footer class="bg-gradient mt-4">
+    <div class="container-fluid">
+        <div class="row p-1">
+            <div class="col-md text-center">
+                <h5 class="text-light mb-2">نبض الإلهام</h5>
+                <small class="text-light">&copy; 2024 جميع الحقوق محفوظة</small>
+                <div class="social-icons mt-2">
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-twitter"></i></a>
+                    <a href="#"><i class="bi bi-youtube"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

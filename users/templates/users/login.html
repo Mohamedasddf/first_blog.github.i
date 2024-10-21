@@ -1,0 +1,59 @@
+{% extends 'myblog/base.html' %}
+{% block content %}
+<h2 class="border-top mt-5 pt-3">تسجيل الدخول</h2>
+<form method="POST" style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ddd;" onsubmit="return validateLoginForm()">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="id_username">اسم المستخدم: <span class="text-danger">*</span></label> <!-- تغيير إلى اسم المستخدم -->
+        <input type="text" name="username" id="id_username" class="form-control" style="height: 40px;" required>
+        <span class="text-danger" id="usernameError" style="display: none;">هذا الحقل مطلوب.</span>
+    </div>
+    <div class="form-group position-relative">
+        <label for="id_password">كلمة المرور: <span class="text-danger">*</span></label>
+        <input type="password" name="password" id="id_password" class="form-control" style="height: 40px;" required>
+        <span class="text-danger" id="passwordError" style="display: none;">هذا الحقل مطلوب.</span>
+        <i id="togglePassword" class="fas fa-eye position-absolute" style="right: 10px; top: 35px; cursor: pointer;"></i>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">تسجيل الدخول</button>
+    <div class="border-top mt-4 pt-2">
+        <small>إذا لم يكن لديك حساب يمكنك <a href="{% url 'register' %}">التسجيل من هنا</a></small>
+    </div>
+</form>
+{% if error %}
+    <div class="alert alert-danger" role="alert">{{ error }}</div> <!-- عرض رسالة الخطأ -->
+{% endif %}
+<script>
+    // دالة للتحقق من صحة نموذج تسجيل الدخول
+    function validateLoginForm() {
+        const username = document.getElementById("id_username").value.trim(); // استخدام اسم المستخدم
+        const password = document.getElementById("id_password").value.trim();
+        
+        const usernameError = document.getElementById("usernameError");
+        const passwordError = document.getElementById("passwordError");
+
+        usernameError.style.display = "none";
+        passwordError.style.display = "none";
+
+        let valid = true;
+        if (username === "") {
+            usernameError.style.display = "block";
+            valid = false;
+        }
+        if (password === "") {
+            passwordError.style.display = "block";
+            valid = false;
+        }
+
+        return valid; // إرجاع الحالة
+    }
+
+    // دالة لتبديل عرض كلمة المرور
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("id_password");
+    togglePassword.addEventListener("click", function() {
+        const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+        passwordInput.setAttribute("type", type);
+        this.classList.toggle("fa-eye-slash");
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,200 @@
+{% extends 'myblog/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <div class="text-center mb-4 bg-gradient p-4 rounded">
+        <h2 class="display-4 text-white">أساسيات HTML</h2>
+        <p class="lead text-light">تعرف على الهيكل والمحتوى الأساسي لصفحات الويب.</p>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <img src="{% static 'myblog/images/course1.jpg' %}" class="img-fluid rounded shadow" alt="أساسيات HTML">
+        </div>
+    </div>
+
+    <div class="card mb-4 shadow-lg border-light">
+        <div class="card-body">
+            <h4 class="font-weight-bold text-success">شرح الدورة</h4>
+            <ul class="nav nav-tabs" id="courseTabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="basics-tab" data-toggle="tab" href="#basics" role="tab" aria-controls="basics" aria-selected="true">هيكل الصفحة الأساسية</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="elements-tab" data-toggle="tab" href="#elements" role="tab" aria-controls="elements" aria-selected="false">العناصر</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="headings-tab" data-toggle="tab" href="#headings" role="tab" aria-controls="headings" aria-selected="false">العناوين</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="paragraph-tab" data-toggle="tab" href="#paragraph" role="tab" aria-controls="paragraph" aria-selected="false">الفقرة</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="links-tab" data-toggle="tab" href="#links" role="tab" aria-controls="links" aria-selected="false">الروابط</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="images-tab" data-toggle="tab" href="#images" role="tab" aria-controls="images" aria-selected="false">الصور</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="lists-tab" data-toggle="tab" href="#lists" role="tab" aria-controls="lists" aria-selected="false">القوائم</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="tables-tab" data-toggle="tab" href="#tables" role="tab" aria-controls="tables" aria-selected="false">الجداول</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="forms-tab" data-toggle="tab" href="#forms" role="tab" aria-controls="forms" aria-selected="false">النماذج</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="styles-tab" data-toggle="tab" href="#styles" role="tab" aria-controls="styles" aria-selected="false">الأساليب والتنسيق</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="comments" aria-selected="false">التعليقات</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="courseTabsContent">
+                <div class="tab-pane fade show active" id="basics" role="tabpanel" aria-labelledby="basics-tab">
+                    <p>HTML (HyperText Markup Language) هي لغة ترميز تستخدم لإنشاء صفحات الويب. تعتمد HTML على عناصر وعلامات لتحديد هيكل ومحتوى الصفحة. إليك الأساسيات الكاملة لـ HTML:</p>
+                    <h5>1. هيكل الصفحة الأساسية</h5>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ar"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;عنوان الصفحة&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;مرحبًا بك في HTML!&lt;/h1&gt;
+    &lt;p&gt;هذا هو نص تجريبي.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+                <div class="tab-pane fade" id="elements" role="tabpanel" aria-labelledby="elements-tab">
+                    <p>تتكون HTML من عناصر، وهي تتكون من:</p>
+                    <ul>
+                        <li>علامات بداية و علامات نهاية.</li>
+                        <li>محتوى داخل العلامات.</li>
+                    </ul>
+                    <pre><code>&lt;p&gt;هذا نص داخل عنصر الفقرة.&lt;/p&gt;</code></pre>
+                </div>
+                <div class="tab-pane fade" id="headings" role="tabpanel" aria-labelledby="headings-tab">
+                    <p>تستخدم لتنسيق النص كعناوين. هناك ستة مستويات من العناوين:</p>
+                    <pre><code>&lt;h1&gt;عنوان رئيسي&lt;/h1&gt;
+&lt;h2&gt;عنوان فرعي&lt;/h2&gt;
+&lt;h3&gt;عنوان فرعي أصغر&lt;/h3&gt;</code></pre>
+                </div>
+                <div class="tab-pane fade" id="paragraph" role="tabpanel" aria-labelledby="paragraph-tab">
+                    <p>تستخدم لإنشاء فقرة نصية:</p>
+                    <pre><code>&lt;p&gt;هذه فقرة نصية.&lt;/p&gt;</code></pre>
+                </div>
+                <div class="tab-pane fade" id="links" role="tabpanel" aria-labelledby="links-tab">
+                    <p>تستخدم لإنشاء روابط:</p>
+                    <pre><code>&lt;a href="https://www.example.com"&gt;زر الزيارة&lt;/a&gt;</code></pre>
+                </div>
+                <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
+                    <p>تستخدم لإضافة الصور:</p>
+                    <pre><code>&lt;img src="path/to/image.jpg" alt="وصف الصورة"&gt;</code></pre>
+                </div>
+                <div class="tab-pane fade" id="lists" role="tabpanel" aria-labelledby="lists-tab">
+                    <p>يمكنك إنشاء قوائم مرتبة وغير مرتبة:</p>
+                    <h6>قائمة غير مرتبة:</h6>
+                    <pre><code>&lt;ul&gt;
+    &lt;li&gt;العنصر الأول&lt;/li&gt;
+    &lt;li&gt;العنصر الثاني&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                    <h6>قائمة مرتبة:</h6>
+                    <pre><code>&lt;ol&gt;
+    &lt;li&gt;العنصر الأول&lt;/li&gt;
+    &lt;li&gt;العنصر الثاني&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                </div>
+                <div class="tab-pane fade" id="tables" role="tabpanel" aria-labelledby="tables-tab">
+                    <p>لإنشاء جداول:</p>
+                    <pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;عنوان العمود 1&lt;/th&gt;
+        &lt;th&gt;عنوان العمود 2&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;بيانات 1&lt;/td&gt;
+        &lt;td&gt;بيانات 2&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+                <div class="tab-pane fade" id="forms" role="tabpanel" aria-labelledby="forms-tab">
+                    <p>لإنشاء نماذج:</p>
+                    <pre><code>&lt;form action="/submit" method="post"&gt;
+    &lt;label for="name"&gt;الاسم:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name"&gt;
+    &lt;input type="submit" value="إرسال"&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+                <div class="tab-pane fade" id="styles" role="tabpanel" aria-labelledby="styles-tab">
+                    <p>لتنسيق الصفحات:</p>
+                    <pre><code>&lt;style&gt;
+    body {
+        background-color: #f8f9fa;
+    }
+    h1 {
+        color: #333;
+    }
+&lt;/style&gt;</code></pre>
+                </div>
+                <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+                    <p>لإضافة تعليقات في الكود:</p>
+                    <pre><code>&lt;!-- هذا تعليق --&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4 shadow-lg border-light">
+        <div class="card-body">
+            <h5 class="font-weight-bold text-info">نهاية الدورة</h5>
+            <p class="card-text" style="font-size: 1.2rem;">
+              HTML هي لغة أساسية لتطوير الويب. من خلال فهم هذه الأساسيات، يمكنك بناء صفحات ويب بسيطة.
+            </p>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa; /* لون خلفية خفيف */
+    }
+
+    .bg-gradient {
+        background: linear-gradient(135deg, #E1B7E4 0%, #4C3C91 100%);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    h4, h5 {
+        margin-top: 15px;
+        color: #333;
+    }
+
+    p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #555;
+    }
+
+    .card {
+        border-radius: 15px;
+        transition: transform 0.2s; /* تأثير عند التمرير */
+    }
+
+    .card:hover {
+        transform: scale(1.02); /* تكبير البطاقة عند التمرير */
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock %}

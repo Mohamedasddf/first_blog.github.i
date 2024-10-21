@@ -1,0 +1,20 @@
+{% extends 'myblog/base.html' %}
+{% block content %}
+<h2 class="border-top mt-5 pt-3">تأكيد تسجيل الخروج</h2>
+
+<p>هل أنت متأكد أنك تريد تسجيل الخروج؟</p>
+
+<form method="POST" action="{% url 'logout' %}" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">نعم، تسجيل الخروج</button>
+</form>
+
+<form method="GET" action="{% url 'register' %}" style="display: inline;">
+    <button type="submit" class="btn btn-primary">لا، العودة للتسجيل</button>
+</form>
+
+<p style="margin-top: 20px;">
+    <a href="{% url 'home' %}">أو العودة إلى الصفحة الرئيسية</a>
+</p>
+
+{% endblock %}

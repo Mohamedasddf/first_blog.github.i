@@ -1,0 +1,87 @@
+{% extends 'myblog/base.html' %}
+{% block content %}
+<h2 class="border-top mt-5 pt-3">إضافة تدوينة جديدة</h2>
+{% if messages %}
+    <div class="alert alert-info" role="alert">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if form.errors %}
+<div class="alert alert-danger">
+    <ul>
+        {% for field in form %}
+            {% for error in field.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data" style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ddd;" onsubmit="return validateForm()">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="id_title">عنوان التدوينة: <span class="text-danger">*</span></label>
+        <input type="text" name="title" id="id_title" class="form-control" style="height: 40px;" required>
+        <span class="text-danger" id="titleError" style="display: none;">هذا الحقل مطلوب.</span>
+    </div>
+    <div class="form-group">
+        <label for="id_content">محتوى التدوينة: <span class="text-danger">*</span></label>
+        <textarea name="content" id="id_content" class="form-control" rows="5" style="height: 100px;" required></textarea>
+        <span class="text-danger" id="contentError" style="display: none;">هذا الحقل مطلوب.</span>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">إضافة التدوينة</button>
+</form>
+
+<script>
+    // دالة للتحقق من صحة النموذج
+    function validateForm() {
+        // الحصول على قيم الحقول
+        const title = document.getElementById("id_title").value.trim();
+        const content = document.getElementById("id_content").value.trim();
+        const author = document.getElementById("id_author").value.trim();
+        
+        // علامات الخطأ
+        const titleError = document.getElementById("titleError");
+        const contentError = document.getElementById("contentError");
+        const authorError = document.getElementById("authorError");
+
+        // إعادة تعيين علامات الخطأ
+        titleError.style.display = "none"; // أعد تعيين
+        contentError.style.display = "none";
+        authorError.style.display = "none";
+
+        // التحقق من الحقول
+        let valid = true;
+        if (title === "") {
+            titleError.style.display = "block"; // أظهر رسالة الخطأ
+            valid = false;
+        }
+        if (content === "") {
+            contentError.style.display = "block"; 
+            valid = false;
+        }
+        if (author === "") {
+            authorError.style.display = "block"; 
+            valid = false;
+        }
+
+        return valid; // إرجاع الحالة
+    }
+
+    // دالة لتبديل عرض كلمة المرور
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("id_password");
+    togglePassword.addEventListener("click", function() {
+        const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+        passwordInput.setAttribute("type", type);
+        this.classList.toggle("fa-eye-slash");
+    });
+</script>
+{% endblock %}

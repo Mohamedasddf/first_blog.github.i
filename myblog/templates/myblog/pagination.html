@@ -1,0 +1,37 @@
+<div class="border-top pt-3 mt-4 text-center">
+    {% if page.has_next %}
+        <a class="custom-nav-button" href="?page={{ page.next_page_number }}">التالي</a>
+    {% else %}
+        <a class="custom-nav-button disabled" href="#">التالي</a>
+    {% endif %}
+    
+    <span class="pagination-info">صفحة {{ page.number }} من {{ page.paginator.num_pages }}</span>
+    
+    {% if page.has_previous %}
+        <a class="custom-nav-button" href="?page={{ page.previous_page_number }}">السابق</a>
+    {% else %}
+        <a class="custom-nav-button disabled" href="#">السابق</a>
+    {% endif %}
+</div>
+
+<style>
+    .custom-nav-button {
+        background: linear-gradient(135deg, #E1B7E4 0%, #4C3C91 100%);
+        color: white; /* لون النص */
+        border: none; /* إزالة الحدود الافتراضية */
+        padding: 10px 20px; /* إضافة مساحة داخلية */
+        border-radius: 5px; /* إضافة زوايا دائرية */
+        transition: background 0.3s; /* تأثير انتقال عند التمرير */
+        text-decoration: none; /* إزالة خط تحت النص */
+    }
+
+    .custom-nav-button:hover {
+        background: linear-gradient(135deg, #4C3C91 0%, #E1B7E4 100%); /* عكس التدرج عند التمرير */
+    }
+
+    .pagination-info {
+        font-size: 1.1em; /* حجم النص */
+        color: #4C3C91; /* لون النص */
+        margin: 0 20px; /* مسافة جانبية */
+    }
+</style>

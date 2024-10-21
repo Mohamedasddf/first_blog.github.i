@@ -1,0 +1,142 @@
+{% extends 'myblog/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <div class="text-center mb-4 bg-gradient p-4 rounded">
+        <h2 class="display-4 text-white">دورة python المجانية للمبتدئين</h2>
+        <p class="lead text-light">انطلق في رحلة تعلم البرمجة مع هذه الدورة المميزة.</p>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <img src="{% static 'myblog/images/course1.jpg' %}" class="img-fluid rounded shadow" alt="دورة python">
+        </div>
+    </div>
+
+    <div class="card mb-4 shadow-lg border-light">
+        <div class="card-body">
+            <h4 class="font-weight-bold text-success">شرح الدورة</h4>
+            <ul class="nav nav-tabs" id="courseTabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="basics-tab" data-toggle="tab" href="#basics" role="tab" aria-controls="basics" aria-selected="true">مقدمة إلى بايثون</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="installation-tab" data-toggle="tab" href="#installation" role="tab" aria-controls="installation" aria-selected="false">التثبيت</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="variables-tab" data-toggle="tab" href="#variables" role="tab" aria-controls="variables" aria-selected="false">المتغيرات والأنواع</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="conditions-tab" data-toggle="tab" href="#conditions" role="tab" aria-controls="conditions" aria-selected="false">الهياكل الشرطية</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="loops-tab" data-toggle="tab" href="#loops" role="tab" aria-controls="loops" aria-selected="false">الحلقات</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="functions-tab" data-toggle="tab" href="#functions" role="tab" aria-controls="functions" aria-selected="false">الدوال</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="courseTabsContent">
+                <div class="tab-pane fade show active" id="basics" role="tabpanel" aria-labelledby="basics-tab">
+                    <p>ما هي بايثون؟: بايثون هي لغة برمجة عالية المستوى، سهلة القراءة، وديناميكية. تُستخدم في مجالات متعددة مثل تطوير الويب، علم البيانات، الذكاء الاصطناعي، وغيرها.</p>
+                    <p><strong>مميزات بايثون:</strong></p>
+                    <ul>
+                        <li>سهلة التعلم.</li>
+                        <li>مكتبات وأطر عمل متعددة.</li>
+                        <li>مجتمع دعم كبير.</li>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="installation" role="tabpanel" aria-labelledby="installation-tab">
+                    <p>قم بتحميل بايثون من الموقع الرسمي: <a href="https://www.python.org/">python.org</a>.</p>
+                    <p>تأكد من إضافة بايثون إلى متغير البيئة (PATH) أثناء التثبيت.</p>
+                </div>
+                <div class="tab-pane fade" id="variables" role="tabpanel" aria-labelledby="variables-tab">
+                    <p>المتغيرات تُستخدم لتخزين البيانات:</p>
+                    <p><strong>أنواع البيانات:</strong></p>
+                    <ul>
+                        <li>int: أعداد صحيحة.</li>
+                        <li>float: أعداد عشرية.</li>
+                        <li>str: نصوص.</li>
+                        <li>bool: قيم منطقية (True/False).</li>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="conditions" role="tabpanel" aria-labelledby="conditions-tab">
+                    <p>تستخدم للتحكم في تدفق البرنامج:</p>
+                    <pre><code>age = 18
+if age >= 18:
+    print("مؤهل للتصويت")
+else:
+    print("غير مؤهل للتصويت")</code></pre>
+                </div>
+                <div class="tab-pane fade" id="loops" role="tabpanel" aria-labelledby="loops-tab">
+                    <p>حلقة for:</p>
+                    <pre><code>for i in range(5):
+    print(i)</code></pre>
+                    <p>حلقة while:</p>
+                    <pre><code>count = 0
+while count < 5:
+    print(count)
+    count += 1</code></pre>
+                </div>
+                <div class="tab-pane fade" id="functions" role="tabpanel" aria-labelledby="functions-tab">
+                    <p>تستخدم لتجميع الكود في وحدات قابلة لإعادة الاستخدام:</p>
+                    <pre><code>def greet(name):
+    return f"مرحبا، {name}!"
+
+print(greet("Ali"))</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4 shadow-lg border-light">
+        <div class="card-body">
+            <h5 class="font-weight-bold text-info">نهاية الدورة</h5>
+            <p class="card-text" style="font-size: 1.2rem;">
+              بايثون هي لغة برمجة قوية ومرنة. يمكنك استخدام الأساسيات التي تعلمتها لبناء تطبيقات صغيرة أو حتى مشاريع كبيرة. مع الممارسة، ستصبح أكثر إلمامًا بمفاهيمها المتقدمة. إذا كان لديك أي أسئلة أو تحتاج إلى توضيحات، فلا تتردد في طرحها!
+            </p>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa; /* لون خلفية خفيف */
+    }
+
+    .bg-gradient {
+        background: linear-gradient(135deg, #E1B7E4 0%, #4C3C91 100%);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    h4, h5 {
+        margin-top: 15px;
+        color: #333;
+    }
+
+    p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #555;
+    }
+
+    .card {
+        border-radius: 15px;
+        transition: transform 0.2s; /* تأثير عند التمرير */
+    }
+
+    .card:hover {
+        transform: scale(1.02); /* تكبير البطاقة عند التمرير */
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock %}

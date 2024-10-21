@@ -1,0 +1,87 @@
+
+.bg-gradient {
+    background: linear-gradient(135deg, #E1B7E4 0%, #4C3C91 100%);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+}
+footer h5 {
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease;
+}
+
+footer h5:hover {
+    transform: scale(1.05); /* تأثير تكبير عند التمرير فوقه */
+}
+
+small {
+    font-size: 0.9rem;
+}
+
+.custom-margin {
+    margin-top: 80px; /* عمل مسسافه بين ال content في الصفحات  */
+}
+
+
+.card {
+    transition: transform 0.3s, box-shadow 0.3s; /* تأثير التحويل */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* رفع البطاقة عند المرور */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* زيادة الظل عند المرور */
+}
+
+.card-img-top {
+    transition: transform 0.3s; /* تأثير على الصورة */
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.1); /* تكبير الصورة عند المرور */
+}
+
+
+
+.another-class {
+    color: blue; /* تغيير لون النص إلى الأزرق */
+    font-size: 24px; /* تغيير حجم الخط */
+    margin-top: 20px; /* إضافة هامش علوي */
+}
+
+.card {
+    margin-top: 20px; /* يمكنك تعديل القيمة حسب الحاجة */
+}
+
+
+
+/* styles.css */
+
+/* تنسيق قائمة التدوينات */
+.latest-post {
+    margin-top: 20px;  /* إضافة مسافة أعلى القائمة */
+}
+
+.latest-post-item {
+    position: relative; /* وضع النسق */
+    padding: 10px 15px; /* ضبط الحشو */
+    transition: background-color 0.3s; /* تأثير التغيير عند التحويم */
+}
+
+/* إضافة خط علوي */
+.latest-post-item:not(:first-child) {
+    border-top: 1px solid #dee2e6; /* خط علوي للعنصر */
+}
+
+/* تأثير التحويم */
+.latest-post-item:hover {
+    background-color: #f8f9fa; /* تغيير لون الخلفية عند التحويم */
+}
+
+/* تخصيص الرابط */
+.latest-post-item a {
+    color: #007bff; /* لون النص الأزرق */
+}
+
+/* تخصيص الرابط عند التحويم */
+.latest-post-item a:hover {
+    text-decoration: underline; /* إضافة خط تحت النص عند التحويم */
+}

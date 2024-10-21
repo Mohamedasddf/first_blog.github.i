@@ -1,0 +1,28 @@
+{% extends 'myblog/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>تأكيد حذف التدوينة</h2>
+
+    {% if messages %}
+    <div class="alert alert-danger" role="alert">
+        {% for message in messages %}
+            {{ message }}<br>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if post.user == request.user %}
+        <p>هل أنت متأكد أنك تريد حذف التدوينة "{{ post.title }}"؟</p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">حذف</button>
+            <a href="{% url 'post_detail' post.id %}" class="btn btn-secondary">إلغاء</a>  <!-- تعديل هنا -->
+        </form>
+    {% else %}
+        <div class="alert alert-warning">ليس لديك الإذن لحذف هذه التدوينة.</div>
+        <a href="{% url 'post_detail' post.id %}" class="btn btn-secondary">عودة إلى تفاصيل التدوينة</a>  <!-- تعديل هنا -->
+    {% endif %}
+</div>
+
+{% endblock %}

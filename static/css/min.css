@@ -1,4 +1,24 @@
-div{
-    color: blue;
-
+@font-face {
+    font-family: 'Tajawal';
+    src: url('../fonts/Tajawal-Regular.ttf') format('truetype'),
+         local('Tajawal'); /* إذا كان الخط مثبتًا محليًا */
 }
+
+html, body {
+    direction: rtl; /* اتجاه الكتابة من اليمين إلى اليسار */
+    text-align: right; /* محاذاة النص إلى اليمين */
+    margin: 0; /* إزالة الهوامش الافتراضية */
+    padding: 0; /* إزالة الحشوات الافتراضية */
+    height: 100%; /* التأكد من أن الجسم يمتد ليشمل 100% من ارتفاع النافذة */
+}
+
+body {
+    font-family: 'Tajawal', sans-serif; /* استخدام الخط المخصص */
+    
+}
+
+.dropdown-menu .dropdown-item {
+    text-align: right !important; /* استخدام !important لتأكيد المحاذاة */
+}
+  
+

@@ -1,0 +1,262 @@
+{% extends 'myblog/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-12 mb-4"> <!-- استخدام عرض كامل للبطاقة -->
+            <div class="custom-card"> <!-- استخدام class مخصص للبطاقة -->
+                <img src="{{ post.author.profile.image.url }}" class="custom-card-img" alt="صوره الناشر" style="width: 50px; height: 50px; border-radius: 50%;">
+                <div class="custom-card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <h5 class="custom-card-title">{{ post.title }}</h5>
+                        <div style="display: flex; align-items: center;">
+                            <!-- اسم الناشر -->
+                            <span class="ml-2">{{ post.user.username }}</span>
+                            <!-- زري تحرير وحذف -->
+                            <a href="{% url 'post_edit' post.id %}" class="custom-button" style="margin-right: 10px;">تحرير</a>
+                            <form action="{% url 'post_delete' post.id %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="custom-button">حذف</button>
+                            </form>
+                        </div>
+                    </div>
+                    <p class="custom-card-date">
+                        <small>نشر في {{ post.post_date|date:"d-m-Y" }}</small>
+                    </p>
+                    <p>{{ post.content }}</p>
+                </div>
+                <div class="custom-card-footer">
+                    <!-- يمكنك إضافة زر أو أي محتوى آخر هنا -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- CSS مخصص لتعديل التصميم -->
+<style>
+    .custom-card {
+        border: none; /* إزالة الحدود */
+        border-radius: 10px; /* زوايا مدورة */
+        overflow: hidden; /* إخفاء المحتوى الزائد */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* تأثير ظل */
+        transition: transform 0.3s ease; /* تأثير التحويل عند التمرير */
+    }
+
+    .custom-card:hover {
+        transform: translateY(-5px); /* رفع البطاقة عند التمرير */
+    }
+
+    .custom-card-img {
+        width: 100px; /* يمكنك تغيير هذا الحجم حسب الحاجة */
+        height: 100px; /* يجب أن يكون العرض والارتفاع متساويين لتكوين الشكل البيضاوي */
+        object-fit: cover; /* هذا سيضمن أن الصورة تغطي المساحة دون تشويه */
+        border-radius: 50%; /* يجعل الصورة بيضاوية */
+    }
+
+    .custom-card-body {
+        padding: 20px; /* مساحة داخلية */
+        background-color: #ffffff; /* لون خلفية الجسم */
+    }
+
+    .custom-card-title {
+        font-size: 1.5rem; /* حجم خط العنوان */
+        color: #333; /* لون النص */
+    }
+
+    .custom-card-date {
+        color: #888; /* لون التاريخ */
+        margin-bottom: 10px; /* المسافة بين التاريخ والنص */
+    }
+
+    .custom-card-text {
+        font-size: 1rem; /* حجم النص */
+        color: #555; /* لون النص */
+    }
+
+    .custom-card-footer {
+        padding: 10px; /* مساحة داخلية */
+        text-align: center; /* محاذاة للنص */
+        background-color: #f8f9fa; /* لون خلفية الجزء السفلي */
+    }
+
+    .custom-button {
+        background: linear-gradient(135deg, #E1B7E4 0%, #4C3C91 100%); /* التدرج */
+        color: white; /* تغيير لون النص إلى الأبيض */
+        border: none; /* إزالة الحدود الافتراضية */
+        padding: 10px 20px; /* إضافة مساحة داخلية للزر */
+        border-radius: 5px; /* إضافة زوايا دائرية للزر */
+        transition: background 0.3s; /* تأثير انتقال عند التمرير */
+        margin-right: 10px; /* إضافة مسافة بين الأزرار */
+    }
+
+    .custom-button:hover {
+        background: linear-gradient(135deg, #4C3C91 0%, #E1B7E4 100%); /* عكس التدرج عند التمرير */
+    }
+
+    .comment {
+        margin-bottom: 20px; /* مساحة أسفل كل تعليق */
+    }
+
+    .comment h6 {
+        margin: 0; /* إزالة الهوامش */
+    }
+
+    .comment p {
+        margin: 5px 0 0; /* هوامش منسقة */
+    }
+</style>
+
+
+
+<h2 class="border-bottom mt-5 mb-3">قائمة التعليقات ({{ comments.count }})</h2>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% if comments %}
+    <div class="list-group mb-4">
+        {% for comment in comments %}
+            <div class="list-group-item p-3 comment">
+                <h6 class="border-bottom pb-2 mb-2">
+                    ({{ comment.name }}) <span class="text-secondary">{{ comment.comment_date|date:'d-m-Y' }}</span>
+                </h6>
+                <p class="comment-body">{{ comment.body }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="text-muted">لا توجد تعليقات بعد.</p>
+{% endif %}
+
+<h2 class="border-top mt-5 pt-3">إضافة تعليق</h2>
+<form method="POST" style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ddd;" onsubmit="return validateForm()">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="id_name">اسمك: <span class="text-danger">*</span></label> <!-- نجمة حمراء هنا -->
+        <input type="text" name="name" id="id_name" class="form-control" style="height: 40px;">
+        <span class="text-danger" id="nameError" style="display: none;">هذا الحقل مطلوب.</span>
+    </div>
+    <div class="form-group">
+        <label for="id_body">تعليقك:</label>
+        <textarea name="body" id="id_body" class="form-control" rows="4" style="resize: none;"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">نشر التعليق</button>
+</form>
+
+<script>
+    function validateForm() {
+        // الحصول على قيم الحقول
+        const name = document.getElementById("id_name").value.trim();
+        const email = document.getElementById("id_email").value.trim();
+        
+        // علامات الخطأ
+        const nameError = document.getElementById("nameError");
+        const emailError = document.getElementById("emailError");
+
+        // إعادة تعيين علامات الخطأ
+        nameError.style.display = "none";
+        emailError.style.display = "none";
+
+        // التحقق من الحقول
+        let valid = true;
+        if (name === "") {
+            nameError.style.display = "block"; // عرض الخطأ
+            valid = false;
+        }
+        if (email === "") {
+            emailError.style.display = "block"; // عرض الخطأ
+            valid = false;
+        }
+
+        return valid; // إرجاع الحالة
+    }
+</script>
+
+<!-- CSS مخصص لتعديل التصميم -->
+<style>
+    /* إعدادات عامة لصفحة الويب */
+    body {
+        background-color: #f8f9fa; /* لون الخلفية للصفحة */
+        font-family: 'Arial', sans-serif; /* نوع خط الصفحة */
+    }
+
+    /* تنسيق عناوين الأقسام */
+    h2 {
+        color: #343a40; /* لون النص */
+        font-size: 1.5rem; /* حجم الخط */
+        margin-bottom: 20px; /* المسافة السفلية */
+    }
+
+    /* تنسيق قائمة التعليقات */
+    .list-group {
+        background-color: #ffffff; /* لون خلفية القائمة */
+        border-radius: 8px; /* زوايا مدورة */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* تأثير ظل */
+    }
+
+    /* تنسيق كل عنصر في القائمة */
+    .list-group-item {
+        border: none; /* إزالة الحدود */
+        padding: 15px; /* مساحة داخلية */
+        margin-bottom: 10px; /* المسافة السفلية بين العناصر */
+        border-radius: 5px; /* زوايا مدورة */
+        transition: background-color 0.3s; /* تأثير عند تغيير الخلفية */
+    }
+
+    /* تأثير عند تمرير الماوس فوق العناصر */
+    .list-group-item:hover {
+        background-color: #f1f1f1; /* لون الخلفية عند التمرير */
+    }
+
+    /* تنسيق عناوين التعليقات */
+    .comment h6 {
+        font-weight: bold; /* جعل الخط سميك */
+        color: #007bff; /* لون النص */
+    }
+
+    /* تنسيق نص التعليقات */
+    .comment p {
+        color: #495057; /* لون النص */
+    }
+
+    /* تنسيق حاويات حقول الإدخال */
+    .form-group {
+        margin-top: 20px; /* المسافة العلوية */
+    }
+
+    /* تنسيق حقول الإدخال */
+    .form-control {
+        width: 100%; /* عرض الحقل بالكامل */
+        padding: 10px; /* مساحة داخلية */
+        border-radius: 5px; /* زوايا مدورة */
+        border: 1px solid #ced4da; /* لون الحدود */
+    }
+
+    /* تنسيق زر النشر */
+    .btn-primary {
+        background-color: #007bff; /* لون خلفية الزر */
+        border: none; /* إزالة الحدود */
+    }
+
+    /* تأثير عند تمرير الماوس فوق الزر */
+    .btn-primary:hover {
+        background-color: #0056b3; /* لون الخلفية عند التمرير */
+    }
+
+    /* تنسيق النصوص الرمادية */
+    .text-muted {
+        color: #6c757d; /* لون النص الرمادي */
+    }
+
+    .comment-body {
+        white-space: normal; /* السماح بالتفاف النص */
+        overflow-wrap: break-word; /* يسمح بتقسيم الكلمات الطويلة */
+    }
+</style>
+
+{%endblock%}

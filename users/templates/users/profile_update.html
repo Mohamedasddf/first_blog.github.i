@@ -1,0 +1,95 @@
+{% extends 'myblog/base.html' %}
+{% block content %}
+<h2 class="border-top mt-5 pt-3">تعديل الملف الشخصي</h2>
+{% if messages %}
+    <div class="alert alert-info" role="alert">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data" style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ddd;" onsubmit="return validateForm()">
+    {% csrf_token %}
+  
+    <div class="form-group">
+        <label for="id_username">اسم المستخدم: <span class="text-danger">*</span></label>
+        <input type="text" name="username" id="id_username" class="form-control" style="height: 40px;">
+        <span class="text-danger" id="usernameError" style="display: none;">هذا الحقل مطلوب.</span>
+    </div>
+    
+    <div class="form-group">
+        <label for="id_email">البريد الإلكتروني: <span class="text-danger">*</span></label>
+        <input type="email" name="email" id="id_email" class="form-control" style="height: 40px;">
+        <span class="text-danger" id="emailError" style="display: none;">هذا الحقل مطلوب.</span>
+    </div>
+    
+    <div class="form-group position-relative">
+        <label for="id_password">كلمة المرور: <span class="text-danger">*</span></label>
+        <input type="password" name="password" id="id_password" class="form-control" style="height: 40px;">
+        <span class="text-danger" id="passwordError" style="display: none;">هذا الحقل مطلوب.</span>
+        <i id="togglePassword" class="fas fa-eye position-absolute" style="right: 10px; top: 35px; cursor: pointer;"></i>
+    </div>
+    
+    <div class="form-group">
+        <label for="id_confirm_password">تأكيد كلمة المرور: <span class="text-danger">*</span></label>
+        <input type="password" name="confirm_password" id="id_confirm_password" class="form-control" style="height: 40px;">
+        <span class="text-danger" id="confirmPasswordError" style="display: none;">يجب أن تتطابق كلمات المرور.</span>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">تعديل</button>
+</form>
+{% if error %}
+    <div class="alert alert-danger" role="alert">{{ error }}</div> <!-- عرض رسالة الخطأ -->
+{% endif %}
+<script>
+    // دالة للتحقق من صحة النموذج
+    function validateForm() {
+        const username = document.getElementById("id_username").value.trim();
+        const email = document.getElementById("id_email").value.trim();
+        const password = document.getElementById("id_password").value.trim();
+        const confirmPassword = document.getElementById("id_confirm_password").value.trim();
+
+        const usernameError = document.getElementById("usernameError");
+        const emailError = document.getElementById("emailError");
+        const passwordError = document.getElementById("passwordError");
+        const confirmPasswordError = document.getElementById("confirmPasswordError");
+
+        usernameError.style.display = "none";
+        emailError.style.display = "none";
+        passwordError.style.display = "none";
+        confirmPasswordError.style.display = "none";
+
+        let valid = true;
+        if (username === "") {
+            usernameError.style.display = "block";
+            valid = false;
+        }
+        if (email === "") {
+            emailError.style.display = "block"; 
+            valid = false;
+        }
+        if (password === "") {
+            passwordError.style.display = "block"; 
+            valid = false;
+        }
+        if (confirmPassword === "") {
+            confirmPasswordError.style.display = "block"; 
+            valid = false;
+        } else if (password !== confirmPassword) {
+            confirmPasswordError.style.display = "block"; 
+            valid = false;
+        }
+
+        return valid;
+    }
+
+    // دالة لتبديل عرض كلمة المرور
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("id_password");
+    togglePassword.addEventListener("click", function() {
+        const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+        passwordInput.setAttribute("type", type);
+        this.classList.toggle("fa-eye-slash");
+    });
+</script>
+{% endblock %}

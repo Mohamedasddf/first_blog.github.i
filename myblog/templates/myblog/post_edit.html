@@ -1,0 +1,40 @@
+{% extends 'myblog/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">تحرير التدوينة</h2>
+    {% if error_message %}
+        <div class="alert alert-danger">{{ error_message }}</div>
+    {% endif %}
+    {% if user == post.user %}  <!-- تحقق مما إذا كان المستخدم هو المؤلف -->
+        <form method="post" class="custom-form">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="title" class="form-label">العنوان</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ post.title }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">المحتوى</label>
+                <textarea class="form-control" id="content" name="content" rows="5" required>{{ post.content }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">تحديث</button>
+        </form>
+    {% else %}
+        <div class="alert alert-warning">ليس لديك الإذن لتحرير هذه التدوينة.</div>
+    {% endif %}
+</div>
+
+
+<style>
+    /* CSS مخصص لتصميم النموذج */
+    .custom-form {
+        background-color: #ffffff; /* لون خلفية للنموذج */
+        padding: 30px; /* مساحة داخلية للنموذج */
+        border-radius: 10px; /* زوايا مدورة */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* تأثير ظل */
+    }
+
+    body {
+        background-color: #f8f9fa; /* لون خلفية لطيف */
+    }
+</style>
+{% endblock %}
