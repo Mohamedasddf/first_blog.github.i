@@ -10,24 +10,21 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
+from pathlib import Path
+import dj_database_url  # تأكد من تثبيت dj-database-url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-
-
-
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-45flhl71&rf67)cbe*t=w4k#t1x6kw@n(5mh1&ghpk1+!#qcma'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'your-vercel-subdomain.vercel.app']
-
+DEBUG = False  # قم بتغيير هذا إلى False في الإنتاج
+ALLOWED_HOSTS = ['first-blog-github-io-mihd.vercel.app']
 
 # Application definition
-
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic', 
     'django.contrib.admin',
@@ -38,8 +35,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'myblog.apps.MyblogConfig',
-
-    
 ]
 
 MIDDLEWARE = [
@@ -54,12 +49,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'first_blog.urls'
-import os
-from pathlib import Path
-
-# BASE_DIR هو مسار الدليل الأساسي للمشروع
-BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 TEMPLATES = [
     {
@@ -79,25 +68,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'first_blog.wsgi.application'
 
-
 # Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'my_blog',  # تأكد أن اسم قاعدة البيانات صحيح
-        'USER': 'my_blog',  # تأكد من أن اسم المستخدم صحيح
-        'PASSWORD': 'mohamed hamed12345six',  # تأكد من كلمة المرور
-        'HOST': 'localhost',  # أو 127.0.0.1
-        'PORT': '5432',  # المنفذ الافتراضي لـ PostgreSQL
-    }
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))  # استخدام متغير البيئة
 }
 
-
 # Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -113,34 +89,22 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-import os
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
-    ]
-
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # هذا هو المكان الذي ستجمع فيه الملفات الثابتة
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-AUTH_USER_MODEL = 'auth.User'  # تأكد من أن هذا موجود
+AUTH_USER_MODEL = 'auth.User'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # مسار تخزين ملفات الوسائط
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

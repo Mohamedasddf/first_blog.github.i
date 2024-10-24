@@ -1,0 +1,32 @@
+.bg-gradient {
+    background: linear-gradient(135deg, #E1B7E4 0%, #4C3C91 100%);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+}
+footer h5 {
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease;
+}
+
+footer h5:hover {
+    transform: scale(1.05); /* تأثير تكبير عند التمرير فوقه */
+}
+
+small {
+    font-size: 0.9rem;
+}
+
+
+
+footer h5 {
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease;
+}
+
+footer h5:hover {
+    transform: scale(1.05); /* تأثير تكبير عند التمرير فوقه */
+}
+small {
+    font-size: 0.9rem;
+}
