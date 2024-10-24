@@ -23,7 +23,8 @@ SECRET_KEY = 'django-insecure-45flhl71&rf67)cbe*t=w4k#t1x6kw@n(5mh1&ghpk1+!#qcma
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'your-vercel-subdomain.vercel.app']
+
 
 # Application definition
 
@@ -82,13 +83,18 @@ WSGI_APPLICATION = 'first_blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # محرك قاعدة البيانات
-        'NAME': BASE_DIR / 'db.sqlite3',         # مسار قاعدة البيانات (sqlite)
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'my_blog',  # تأكد أن اسم قاعدة البيانات صحيح
+        'USER': 'my_blog',  # تأكد من أن اسم المستخدم صحيح
+        'PASSWORD': 'mohamed hamed12345six',  # تأكد من كلمة المرور
+        'HOST': 'localhost',  # أو 127.0.0.1
+        'PORT': '5432',  # المنفذ الافتراضي لـ PostgreSQL
     }
 }
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
