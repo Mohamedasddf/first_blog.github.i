@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 def home(request):
     posts = Post.objects.all()  # الحصول على جميع المشاركات
-    paginator = Paginator(posts, 6)  # تحديد عدد المشاركات لكل صفحة
+    paginator = Paginator(posts, 3)  # تحديد عدد المشاركات لكل صفحة
     page = request.GET.get('page')  # الحصول على رقم الصفحة من الطلب
     
     try:

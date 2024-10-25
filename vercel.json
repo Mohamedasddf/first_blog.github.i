@@ -3,17 +3,21 @@
   "builds": [
     {
       "src": "first_blog/wsgi.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "python3.12"
+      }
     }
   ],
   "routes": [
     {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "first_blog/wsgi.py"
     }
-  ],
-  "env": {
-    "DJANGO_SETTINGS_MODULE": "first_blog.settings",
-    "DATABASE_URL": "postgres://user:password@hostname:port/dbname" 
-  }
+  ]
 }

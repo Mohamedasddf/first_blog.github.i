@@ -2,96 +2,96 @@
 {% block content %}
 <div class="container mt-5">
     <div class="row">
-        {% for post in posts %}
-        <div class="col-lg-4 col-md-6 mb-4"> 
-            <div class="custom-card"> <!-- استخدام class مخصص للبطاقة -->
+        <div class="col-12" style="margin-left: 15%;"> <!-- تحريك المحتوى إلى اليمين باستخدام margin-left -->
+            {% for post in posts %}
+            <div class="custom-card mb-4"> <!-- استخدام class مخصص للبطاقة -->
                 <div class="custom-card-body">
                     <div class="author-box mb-3"> <!-- مستطيل لاسم الناشر -->
-                        <span class="fw-bold">أسم ناشر التدوينه:</span> <!-- عنوان الناشر -->
-                        <span>{{ post.user.username }}</span> <!-- اسم الناشر -->
+                        <span class="fw-bold">أسم ناشر التدوينه:</span> 
+                        <span>{{ post.user.username }}</span>
                     </div>
                     <h5 class="custom-card-title">{{ post.title }}</h5>
                     <p class="custom-card-date">
                         <small>نشر في {{ post.post_date|date:"d-m-Y" }}</small>
                     </p>
                     <p class="custom-card-text">
-                        {{ post.content|truncatewords:20 }} <!-- عرض 20 كلمة فقط -->
-                        {% if post.content|length > 30 %} <!-- تحقق مما إذا كان المحتوى أطول من 30 كلمة -->
-                        ... <a href="#" class="text-primary">اقرأ المزيد</a> <!-- زر للانتقال لمحتوى التدوينة الكاملة -->
+                        {{ post.content|truncatewords:20 }} 
+                        {% if post.content|length > 30 %}
+                        ... <a href="#" class="text-primary">اقرأ المزيد</a>
                         {% endif %}
                     </p>
                 </div>
                 <div class="custom-card-footer">
-                    <a href="{% url 'post_detail' post.id %}" class="custom-btn">اقرأ المزيد</a> <!-- زر بتصميم مخصص -->
+                    <a href="{% url 'post_detail' post.id %}" class="custom-btn">اقرأ المزيد</a>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 </div>
 
 <style>
     .custom-card {
-        border: none; /* إزالة الحدود */
-        border-radius: 10px; /* زوايا مدورة */
-        overflow: hidden; /* إخفاء المحتوى الزائد */
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* تأثير ظل */
-        transition: transform 0.3s ease; /* تأثير التحويل عند التمرير */
+        border: none; 
+        border-radius: 10px; 
+        overflow: hidden; 
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+        transition: transform 0.3s ease; 
+        width: 100%; /* عرض البطاقة 100% */
     }
 
     .custom-card:hover {
-        transform: translateY(-5px); /* رفع البطاقة عند التمرير */
+        transform: translateY(-5px); 
     }
 
     .custom-card-body {
-        padding: 20px; /* مساحة داخلية */
-        background-color: #ffffff; /* لون خلفية الجسم */
+        padding: 20px; 
+        background-color: #ffffff; 
     }
 
     .author-box {
-        background: linear-gradient(135deg, #E1B7E4 0%, #4C3C91 100%); /* الخلفية المتدرجة */
-        padding: 10px; /* مساحة داخلية */
-        border-radius: 5px; /* زوايا مدورة للمستطيل */
-        margin-bottom: 15px; /* مسافة أسفل المستطيل */
-        text-align: center; /* محاذاة للنص في الوسط */
-        color: white; /* لون النص */
+        background: linear-gradient(135deg, #E1B7E4 0%, #4C3C91 100%); 
+        padding: 10px; 
+        border-radius: 5px; 
+        margin-bottom: 15px; 
+        text-align: center; 
+        color: white; 
     }
 
     .custom-card-title {
-        font-size: 1.5rem; /* حجم خط العنوان */
-        color: #333; /* لون النص */
+        font-size: 1.5rem; 
+        color: #333; 
     }
 
     .custom-card-date {
-        color: #888; /* لون التاريخ */
-        margin-bottom: 10px; /* المسافة بين التاريخ والنص */
+        color: #888; 
+        margin-bottom: 10px; 
     }
 
     .custom-card-text {
-        font-size: 1rem; /* حجم النص */
-        color: #555; /* لون النص */
+        font-size: 1rem; 
+        color: #555; 
     }
 
     .custom-card-footer {
-        padding: 10px; /* مساحة داخلية */
-        text-align: center; /* محاذاة للنص */
-        background-color: #f8f9fa; /* لون خلفية الجزء السفلي */
+        padding: 10px; 
+        text-align: center; 
+        background-color: #f8f9fa; 
     }
 
     .custom-btn {
-        background-color: #007BFF; /* لون الزر */
-        color: white; /* لون نص الزر */
-        padding: 10px 20px; /* مسافة داخلية */
-        border-radius: 20px; /* زوايا مدورة للزر */
-        text-decoration: none; /* إزالة الخط السفلي */
-        transition: background-color 0.3s; /* تأثير التغيير في اللون */
+        background-color: #007BFF; 
+        color: white; 
+        padding: 10px 20px; 
+        border-radius: 20px; 
+        text-decoration: none; 
+        transition: background-color 0.3s; 
     }
 
     .custom-btn:hover {
-        background-color: #0056b3; /* لون الزر عند التمرير */
+        background-color: #0056b3; 
     }
 </style>
 
 {% include 'myblog/pagination.html' with page=posts %}
 {% endblock %}
-
