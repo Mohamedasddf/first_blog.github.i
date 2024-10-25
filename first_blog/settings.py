@@ -23,8 +23,7 @@ SECRET_KEY = 'django-insecure-45flhl71&rf67)cbe*t=w4k#t1x6kw@n(5mh1&ghpk1+!#qcma
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1', 'first-blog-github-io-mihd.vercel.app']
-
+ALLOWED_HOSTS = [ '127.0.0.1','first-blog-github-io-mihd.vercel.app']
 
 # Application definition
 
@@ -83,15 +82,6 @@ WSGI_APPLICATION = 'first_blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-import os
-import dj_database_url
-
-# استخدام DATABASE_URL من البيئة، وإذا لم يكن موجودًا، استخدم إعدادات قاعدة البيانات المحلية
-DATABASE_URL = os.environ.get('DATABASE_URL', 'postgres://my_blog:mohamed_hamed12345six@localhost:5432/my_blog')
-
-DATABASES = {
-    'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600)  # ضبط conn_max_age لزيادة الأداء
-}
 
 DATABASES = {
     'default': {
@@ -153,3 +143,4 @@ AUTH_USER_MODEL = 'auth.User'  # تأكد من أن هذا موجود
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # مسار تخزين ملفات الوسائط
+
