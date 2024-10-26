@@ -56,17 +56,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'first_blog.wsgi.application'
 
-# Database configuration
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME', 'my_blog'),
-        'USER': os.environ.get('DB_USER', 'my_blog'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'mohamed hamed12345six'),
-        'HOST': os.environ.get('DB_HOST', 'localhost'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
+        'NAME': os.environ.get('DB_NAME', 'my_blog'),      # اسم قاعدة البيانات
+        'USER': os.environ.get('DB_USER', 'my_blog'),      # اسم المستخدم
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'mohamed hamed12345six'),  # كلمة المرور
+        'HOST': os.environ.get('DB_HOST', 'localhost'),      # المضيف (عنوان قاعدة البيانات)
+        'PORT': os.environ.get('DB_PORT', '5432'), # المنفذ
     }
 }
+
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
