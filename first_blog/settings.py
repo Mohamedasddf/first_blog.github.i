@@ -10,8 +10,7 @@ DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    'first-blog-github-i-nxac.vercel.app',
-    'first-blog-github-i-3cka.vercel.app'
+    'first-blog-github-i.vercel.app'
 ]
 
 
