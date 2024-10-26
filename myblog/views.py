@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 def home(request):
     posts = Post.objects.all()  # الحصول على جميع المشاركات
-    paginator = Paginator(posts, 3)  # تحديد عدد المشاركات لكل صفحة
+    paginator = Paginator(posts, 4)  # تحديد عدد المشاركات لكل صفحة
     page = request.GET.get('page')  # الحصول على رقم الصفحة من الطلب
     
     try:
@@ -38,8 +38,6 @@ def home(request):
 
 def about(request):
     return render(request, 'myblog/about.html', {"title": "من أنا"})
-
-
 
 def post_detail(request, post_id):
     # الحصول على المنشور بناءً على المعرف
@@ -71,8 +69,6 @@ def post_detail(request, post_id):
     }
     
     return render(request, 'myblog/detail.html', context)
-                  
-
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
@@ -110,8 +106,6 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         logger.error("نموذج التدوينة غير صالح: %s", form.errors)
         return super().form_invalid(form)
 
-
-
 @login_required  # يضمن أن المستخدم يجب أن يكون مسجلاً للدخول
 def post_edit(request, post_id):  # تأكد من أن المعلمة هنا هي 'post_id'
     post = get_object_or_404(Post, id=post_id)  # استرجاع التدوينة حسب id
@@ -141,7 +135,6 @@ def post_edit(request, post_id):  # تأكد من أن المعلمة هنا ه�
         'error_message': error_message,
     })
 
-
 @login_required
 def post_delete(request, post_id):
     post = get_object_or_404(Post, id=post_id)
@@ -159,8 +152,6 @@ def post_delete(request, post_id):
         return redirect('home')
 
     return render(request, 'myblog/post_confirm_delit.html', {'post': post})
-
-
 
 def rate_site(request):    
     if request.method == 'POST':
@@ -182,16 +173,17 @@ def rate_site(request):
 def django(request):
     return render(request, 'myblog/django.html', {"title": "دوره جانجو"})
 
-
-
 def python(request):
     return render(request, 'myblog/python.html', {"title": "دوره بايثون"})
-
-
 
 def css(request):
     return render(request, 'myblog/c++.html', {"title": "دوره c++"})
 
-
 def html(request):
     return render(request, 'myblog/html.html', {"title": "دوره html"})
+
+def Privacy_Policy(request):
+    return render(request,'myblog/PrivacyPolicy.html',{'title':' سياسه الخصوصيه }'})
+
+def TermsofUse(request):
+    return render(request,'myblog/TermsofUse.html',{'title':' شروط لاستخدام  }'})

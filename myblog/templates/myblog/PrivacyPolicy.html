@@ -1,0 +1,70 @@
+{% extends 'myblog/index.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>سياسة الخصوصية</title>
+</head>
+<body>
+
+<!-- زر لفتح مودال سياسة الخصوصية -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#privacyPolicyModal">
+    عرض سياسة الخصوصية
+</button>
+
+<!-- مودال سياسة الخصوصية -->
+<div class="modal fade" id="privacyPolicyModal" tabindex="-1" role="dialog" aria-labelledby="privacyPolicyModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="privacyPolicyModalLabel">سياسة الخصوصية</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6>مقدمة:</h6>
+                <p>توضح سياسة الخصوصية هذه كيفية جمع واستخدام وحماية المعلومات الشخصية التي تقدمها عند استخدام مدونتنا.</p>
+                
+                <h6>المعلومات التي نجمعها:</h6>
+                <ul>
+                    <li>المعلومات الشخصية: مثل الاسم، البريد الإلكتروني، وأي معلومات أخرى تقدمها عند التسجيل أو التعليق.</li>
+                    <li>معلومات الاستخدام: مثل عنوان IP، نوع المتصفح، الصفحات التي تم زيارتها، والتوقيتات.</li>
+                </ul>
+
+                <h6>كيفية استخدام المعلومات:</h6>
+                <ul>
+                    <li>لتحسين المحتوى والخدمات.</li>
+                    <li>للتواصل معك بخصوص التحديثات والأخبار.</li>
+                    <li>لتحليل البيانات وفهم كيفية استخدام الزوار لموقعنا.</li>
+                </ul>
+
+                <h6>حماية المعلومات:</h6>
+                <p>نقوم بتأمين المعلومات الشخصية باستخدام تقنيات مناسبة. ومع ذلك، لا يمكن ضمان الأمان الكامل على الإنترنت.</p>
+
+                <h6>الروابط الخارجية:</h6>
+                <p>قد تحتوي مدونتنا على روابط لمواقع خارجية، ونحن لسنا مسؤولين عن سياسات الخصوصية لهذه المواقع.</p>
+
+                <h6>التغييرات:</h6>
+                <p>نحتفظ بالحق في تعديل سياسة الخصوصية في أي وقت. سيتم إعلامك بأي تغييرات من خلال نشر السياسة الجديدة على هذه الصفحة.</p>
+
+                <h6>الاتصال بنا:</h6>
+                <p>إذا كان لديك أي استفسارات حول سياسة الخصوصية، يمكنك التواصل معنا عبر البريد الإلكتروني [mh1351448@gmail.com].</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+{% endblock %}

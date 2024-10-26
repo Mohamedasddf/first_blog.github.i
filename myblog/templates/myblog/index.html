@@ -23,7 +23,7 @@
 <!-- نافبار -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient">
     <a class="navbar-brand" href="#">
-        <img src="{% static 'images/favicon.png' %}" alt="" style="height: 30px;">
+        <img src="{% static 'images/favicon.png' %}" alt="" style="height: 40px;">
         نبض الإلهام 
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +32,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="d-flex justify-content-between w-100">
             <span class="navbar-text" style="margin-right: 20px;">
-                𝑴𝒐𝒉𝒂𝒎𝒆𝒅 𝑯𝒆𝒔𝒉𝒂𝒎
+               
             </span>
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item active">
@@ -154,7 +154,7 @@
                     وسائل التواصل الاجتماعي
                 </div>
                 <div class="card-body text-center">
-                    <a href="https://www.facebook.com/profile.php?id=100080772770787&mibextid=ZbWKwL" class="btn btn-primary m-1">
+                    <a href="#" class="btn btn-primary m-1">
                         <i class="bi bi-facebook"></i> فيسبوك
                     </a>
                     <a href="#" class="btn btn-info m-1">
@@ -172,12 +172,15 @@
     </div>
 </div>
 <!-- الفوتر -->
-<footer class="bg-gradient mt-4">
+<footer class="bg-gradient mt-7">
     <div class="container-fluid">
         <div class="row p-1">
             <div class="col-md text-center">
-                <h5 class="text-light mb-2">نبض الإلهام</h5>
                 <small class="text-light">&copy; 2024 جميع الحقوق محفوظة</small>
+                <div class="mt-2">
+                    <a href="{% url 'privacy_policy' %}" class="text-light">سياسة الخصوصية</a> | 
+                    <a href="{% url 'Terms_ofUse' %}" class="text-light">شروط الاستخدام</a>
+                </div>
                 <div class="social-icons mt-2">
                     <a href="#"><i class="bi bi-facebook"></i></a>
                     <a href="#"><i class="bi bi-twitter"></i></a>
@@ -188,6 +191,7 @@
         </div>
     </div>
 </footer>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

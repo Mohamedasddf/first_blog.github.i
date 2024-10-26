@@ -9,17 +9,18 @@
         {% csrf_token %}
         <div class="form-group">
             <label for="username">اسم المستخدم</label>
+            <small class="form-text text-muted">إذا لم تسجل في الموقع، سيتم استخدام اسم (مسجل مجهول!) بدلاً من اسم المستخدم.</small>
             <input type="text" class="form-control" id="username" name="username" required>
         </div>
         <div class="form-group">
             <label for="rating">التقييم</label>
             <select class="form-control" id="rating" name="rating" required>
                 <option value="">اختر تقييمك</option>
-                <option value="1">1 ⭐</option>
-                <option value="2">2 ⭐</option>
-                <option value="3">3 ⭐</option>
-                <option value="4">4 ⭐</option>
-                <option value="5">5 ⭐</option>
+                <option value="1"> ⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
             </select>
         </div>
         <div class="form-group">
@@ -28,6 +29,7 @@
         </div>
         <button type="submit" class="btn btn-primary btn-lg btn-block">إرسال التقييم</button>
     </form>
+    
 </div>
 
 <!-- قسم تقييمات المستخدمين -->

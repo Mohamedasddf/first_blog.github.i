@@ -1,0 +1,66 @@
+{% extends 'myblog/index.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>شروط الاستخدام</title>
+</head>
+<body>
+
+<!-- زر لفتح مودال شروط الاستخدام -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#termsOfUseModal">
+    عرض شروط الاستخدام
+</button>
+
+<!-- مودال شروط الاستخدام -->
+<div class="modal fade" id="termsOfUseModal" tabindex="-1" role="dialog" aria-labelledby="termsOfUseModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="termsOfUseModalLabel">شروط الاستخدام</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6>مقدمة:</h6>
+                <p>توضح شروط الاستخدام هذه القواعد والشروط التي يجب أن توافق عليها عند استخدام مدونتنا.</p>
+                
+                <h6>قبول الشروط:</h6>
+                <p>عند استخدامك لموقعنا، فإنك توافق على الالتزام بهذه الشروط. إذا كنت لا توافق على هذه الشروط، يجب عليك عدم استخدام المدونة.</p>
+
+                <h6>التغييرات:</h6>
+                <p>نحتفظ بالحق في تعديل أو تحديث شروط الاستخدام في أي وقت. يجب عليك مراجعة هذه الشروط بانتظام للاطلاع على أي تغييرات.</p>
+
+                <h6>المحتوى:</h6>
+                <p>نحن لا نتحمل أي مسؤولية عن دقة أو اكتمال المعلومات المقدمة في المدونة. يجب على المستخدمين التحقق من المعلومات قبل اتخاذ أي قرار بناءً عليها.</p>
+
+                <h6>الروابط الخارجية:</h6>
+                <p>قد تحتوي المدونة على روابط لمواقع خارجية. نحن غير مسؤولين عن محتوى أو سياسات الخصوصية لهذه المواقع.</p>
+
+                <h6>حقوق الملكية الفكرية:</h6>
+                <p>جميع المحتويات، بما في ذلك النصوص والصور والشعارات، محمية بموجب حقوق الطبع والنشر. لا يجوز لك استخدام المحتوى بدون إذن مسبق.</p>
+
+                <h6>الاتصال بنا:</h6>
+                <p>إذا كان لديك أي استفسارات حول شروط الاستخدام، يمكنك التواصل معنا عبر البريد الإلكتروني [mh1351448@gmail.com].</p>
+                
+                <h6>التعامل مع المدونه وكتابه مدونات:</h6>
+                <p>اذا اردت ان تكتب مدونات يجب عليك تسجيل في الموقع.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+{% endblock %}

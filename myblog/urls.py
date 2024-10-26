@@ -15,4 +15,6 @@ urlpatterns = [
     path('python/',views.python, name='python'),
     path('c++/',views.css, name='c++'),
     path('html/',views.html, name='html'),
+    path('privacy-policy/', views.Privacy_Policy, name='privacy_policy'),
+    path('Terms_ofUse/', views.TermsofUse, name='Terms_ofUse')
 ]
