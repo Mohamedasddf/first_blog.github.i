@@ -56,7 +56,14 @@ WSGI_APPLICATION = 'first_blog.wsgi.application'
 
 # Database configuration
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME', 'my_blog'),
+        'USER': os.environ.get('DB_USER', 'my_blog'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'mohamed hamed12345six'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
+    }
 }
 
 AUTH_PASSWORD_VALIDATORS = [
