@@ -61,7 +61,7 @@ DATABASES = {
         'NAME': os.environ.get('DB_NAME', 'my_blog'),      # اسم قاعدة البيانات
         'USER': os.environ.get('DB_USER', 'my_blog'),      # اسم المستخدم
         'PASSWORD': os.environ.get('DB_PASSWORD', 'mohamed hamed12345six'),  # كلمة المرور
-        'HOST': os.environ.get('DB_HOST', 'localhost'),      # المضيف (عنوان قاعدة البيانات)
+        'HOST': os.environ.get('DB_HOST', 'first-blog-github-i-xxjd-git-master-mohamedasddfs-projects.vercel.app'),      # المضيف (عنوان قاعدة البيانات)
         'PORT': os.environ.get('DB_PORT', '5432'), # المنفذ
     }
 }
