@@ -7,13 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-45flhl71&rf67)cbe*t=w4k#t1x6kw@n(5mh1&ghpk1+!#qcma')
 
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
-ALLOWED_HOSTS = os.environ.get(
-    'ALLOWED_HOSTS', 
-    '127.0.0.1,localhost,first-blog-github-i-bgzv.vercel.app,first-blog-github-i-bgzv-2gbuk2crx-mohamedasddfs-projects.vercel.app,first-blog-github-63me56dj2-mohamedasddfs-projects.vercel.app'
-).split(',')
-
-
-
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1,localhost,first-blog-github-i.vercel.app').split(',')
 
 
 INSTALLED_APPS = [
